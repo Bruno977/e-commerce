@@ -1,0 +1,15 @@
+services:
+  app:
+    build: 
+      context: .
+    ports:
+      - 3333:3333
+  postgres:
+    container_name: e-commerce
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: e-commerce

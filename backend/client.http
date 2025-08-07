@@ -1,0 +1,125 @@
+@baseUrl = http://localhost:3333
+@authToken = {{authenticate.response.body.access_token}}
+
+########################################
+# USER
+########################################
+
+# @name create_account
+POST {{baseUrl}}/accounts
+Content-Type: application/json
+
+{
+  "name": "Bruno Rodrigues",
+  "email": "bruno1@example.com.br",
+  "role": "admin",
+  "password": "123456"
+}
+
+###
+
+# @name authenticate
+POST {{baseUrl}}/sessions
+Content-Type: application/json
+
+{
+  "email": "bruno1@example.com.br",
+  "password": "123456"
+}
+
+###
+
+########################################
+# CATEGORY
+########################################
+
+# @name create_category
+POST {{baseUrl}}/categories
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "title": "Category 3",
+  "description": "Description of category 2"
+}
+
+###
+
+# @name find_category_by_id
+GET {{baseUrl}}/categories/62305f7f-9661-4acd-8eb2-2c521018ff51
+Content-Type: application/json
+
+###
+
+# @name find_category_by_slug
+GET {{baseUrl}}/categories/slug/category-3
+Content-Type: application/json
+
+###
+
+# @name remove_category
+DELETE {{baseUrl}}/categories/62305f7f-9661-4acd-8eb2-2c521018ff51
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+###
+
+# @name update_category
+PUT {{baseUrl}}/categories/ca058a46-ca91-4b1e-82a0-f60eee50f13b
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "title": "Category 1",
+  "description": "Description of category 1"
+}
+
+###
+
+########################################
+# PRODUCT
+########################################
+
+# @name create_product
+POST {{baseUrl}}/products
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "Product 1",
+  "description": "Description of product 1",
+  "price": 100,
+  "discount": 10,
+  "stock": 50,
+  "categoryIds": ["7feef6a9-5ff3-425c-8cb6-209c81de8ac0"],
+  "attachmentIds": []
+}
+
+###
+
+# @name find_product_by_id
+GET {{baseUrl}}/products/facec027-dbda-490d-8212-ec459b9ea72d
+Content-Type: application/json
+
+###
+
+# @name update_product
+PUT {{baseUrl}}/products/12345
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+{
+  "name": "Updated Product",
+  "description": "Updated description",
+  "price": 150.0
+}
+
+###
+
+# @name remove_product
+DELETE {{baseUrl}}/products/12345
+Authorization: Bearer {{authToken}}
+Content-Type: application/json
+
+###
+
