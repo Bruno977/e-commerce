@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "docker:up": "docker compose --env-file ./backend/.env up",
+    "docker:up:d": "docker compose --env-file ./backend/.env up -d",
+    "docker:build": "docker compose --env-file ./backend/.env up --build",
+    "docker:build:d": "docker compose --env-file ./backend/.env up --build -d",
+    "docker:down": "docker compose down",
+    "docker:restart": "docker compose restart",
+    "docker:logs": "docker compose logs -f"
+  }
+}
